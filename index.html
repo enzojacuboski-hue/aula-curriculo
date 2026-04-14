@@ -1,0 +1,219 @@
+from weasyprint import HTML
+
+# Conteúdo do currículo em HTML/CSS
+resume_html = """
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Enzo Miguel</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+        .container {
+            width: 100%;
+            display: table;
+            border-collapse: collapse;
+        }
+        /* Barra Lateral */
+        .sidebar {
+            width: 30%;
+            background-color: #1a2a3a;
+            color: white;
+            display: table-cell;
+            vertical-align: top;
+            padding: 40px 25px;
+            height: 297mm; /* Altura A4 */
+        }
+        /* Conteúdo Principal */
+        .main-content {
+            width: 70%;
+            background-color: #ffffff;
+            display: table-cell;
+            vertical-align: top;
+            padding: 40px 40px;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            background-color: #34495e;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid #3498db;
+        }
+        h1 {
+            font-size: 24pt;
+            margin: 0;
+            color: #1a2a3a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h2 {
+            font-size: 14pt;
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+        .sidebar h2 {
+            color: #ecf0f1;
+            border-bottom: 1px solid #34495e;
+            font-size: 12pt;
+        }
+        .contact-info, .skills, .languages {
+            margin-bottom: 30px;
+        }
+        .contact-info p {
+            font-size: 9pt;
+            margin: 10px 0;
+        }
+        .skill-item {
+            font-size: 10pt;
+            margin-bottom: 8px;
+            background: #2c3e50;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .job-title {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #2c3e50;
+            margin-bottom: 2px;
+        }
+        .company {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+        .description {
+            font-size: 10.5pt;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .project-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .project-name {
+            font-weight: bold;
+            color: #1a2a3a;
+        }
+        .tag {
+            display: inline-block;
+            background: #e1e8ed;
+            color: #1a2a3a;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 8pt;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div class="profile-img"></div>
+                <h3 style="margin-bottom: 5px;">Enzo Miguel</h3>
+                <p style="font-size: 10pt; color: #bdc3c7;">Estudante de Dev. de Sistemas</p>
+            </div>
+
+            <h2>Contato</h2>
+            <div class="contact-info">
+                <p>📍 São Paulo, SP (ou sua cidade)</p>
+                <p>📧 enzo.miguel@email.com</p>
+                <p>📞 (11) 99999-9999</p>
+                <p>🔗 linkedin.com/in/enzomiguel</p>
+                <p>💻 github.com/enzomiguel</p>
+            </div>
+
+            <h2>Hard Skills</h2>
+            <div class="skills">
+                <div class="skill-item">HTML5 & CSS3</div>
+                <div class="skill-item">JavaScript (Básico)</div>
+                <div class="skill-item">Lógica de Programação</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Git & GitHub</div>
+            </div>
+
+            <h2>Idiomas</h2>
+            <div class="languages">
+                <p>Português (Nativo)</p>
+                <p>Inglês (Técnico/Intermediário)</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1>Enzo Miguel</h1>
+            <p style="color: #7f8c8d; font-size: 11pt;">16 anos | Aspirante a Desenvolvedor Full Stack</p>
+
+            <h2>Objetivo</h2>
+            <p class="description">
+                Estudante técnico apaixonado por tecnologia e resolução de problemas, em busca da primeira oportunidade como Estagiário ou Jovem Aprendiz na área de Desenvolvimento de Sistemas. Focado em aprender novas tecnologias e contribuir para projetos inovadores.
+            </p>
+
+            <h2>Formação Acadêmica</h2>
+            <div class="job-title">Técnico em Desenvolvimento de Sistemas</div>
+            <div class="company">Nome da Instituição (Ex: ETEC / SENAI) | Jan 2024 - Presente</div>
+            
+            <div class="job-title">Ensino Médio</div>
+            <div class="company">Nome da Escola | Prev. Conclusão: Dez 2025</div>
+
+            <h2>Projetos em Destaque</h2>
+            <div class="project-box">
+                <div class="project-name">Portfólio Pessoal</div>
+                <p class="description" style="margin-bottom: 5px;">Desenvolvimento de um site responsivo para exibir projetos acadêmicos.</p>
+                <div>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="project-box">
+                <div class="project-name">Sistema de Gestão de Biblioteca</div>
+                <p class="description" style="margin-bottom: 5px;">Projeto acadêmico focado em lógica de programação e manipulação de dados simples.</p>
+                <div>
+                    <span class="tag">Python</span>
+                    <span class="tag">Lógica</span>
+                </div>
+            </div>
+
+            <h2>Cursos Extra-curriculares</h2>
+            <ul style="font-size: 10.5pt; color: #2c3e50;">
+                <li>Fundamentos de Programação - Alura / Coursera</li>
+                <li>Web Design Responsivo - FreeCodeCamp</li>
+                <li>Workshop de Metodologias Ágeis (Scrum/Kanban)</li>
+            </ul>
+
+            <h2>Competências Comportamentais</h2>
+            <p class="description">
+                Trabalho em equipe, Proatividade, Pensamento Crítico, Facilidade em aprender novas ferramentas e Boa comunicação.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+# Salvar e gerar PDF
+with open("curriculo_enzo_miguel.html", "w", encoding="utf-8") as f:
+    f.write(resume_html)
+
+HTML(string=resume_html).write_pdf("Curriculo_Enzo_Miguel.pdf")
